@@ -9,8 +9,6 @@ public class Main {
     static ListaSubes subes = new ListaSubes();
     public static void main(String[] args) {
 
-
-
         String opcion;
 
          do{
@@ -31,12 +29,10 @@ public class Main {
                 default -> JOptionPane.showMessageDialog(null, "No es una opcion");
             }
          }while (!opcion.equals("0"));
-
     }
 
     private static void consultarSubes(ListaSubes subes) {
         System.out.println(subes);
-
     }
 
     private static void cargarSaldo() {
@@ -45,16 +41,24 @@ public class Main {
             return;
         }
 
-        boolean idCorrecto = false;
-        TarjetaSube tarjetaSube = null;
-        int id;
         double carga;
 
+        System.out.println("Ingrese id de la tarjeta sube que a la quiere cargar saldo: ");
+        TarjetaSube tarjetaSube = getTarjeta();
 
+        System.out.println("Ingrese la Cantidad a cargar: ");
+        carga = scanner.nextDouble();
+        tarjetaSube.getSaldo().cargarSaldo(carga);
+        
+        System.out.println("Su Nuevo Saldo es: $" + tarjetaSube.getSaldo());
+    }
+
+    private static TarjetaSube getTarjeta(){
+        boolean idCorrecto = false;
+        int id;
+        TarjetaSube tarjetaSube = null;
         do {
-            System.out.println("Ingrese id de la tarjeta sube que a la quiere cargar saldo: ");
             id = scanner.nextInt();
-
             for (TarjetaSube tarjeta : subes.getSubes()) {
                 if (id == tarjeta.getId()) {
                     idCorrecto = true;
@@ -62,16 +66,8 @@ public class Main {
                 }
             }
             if (!idCorrecto) System.out.println("Id Incorrecto");
-
-
         }while (!idCorrecto);
-
-        System.out.println("Ingrese la Cantidad a cargar: ");
-        carga = scanner.nextDouble();
-        tarjetaSube.getSaldo().cargarSaldo(carga);
-
-
-        System.out.println("Su Nuevo Saldo es: $" + tarjetaSube.getSaldo());
+        return tarjetaSube;
     }
 
     private static void hacerViaje() {
