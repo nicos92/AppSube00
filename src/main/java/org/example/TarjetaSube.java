@@ -11,9 +11,8 @@ public class TarjetaSube {
     private List<Viaje> viajes;
     private Integer Id;
 
-    public TarjetaSube (Integer Id, Persona persona){
+    public TarjetaSube (Integer Id){
         this.Id = Id;
-        this.persona = persona;
         this.saldo = new Saldo(0.0);
         this.viajes = new ArrayList<>();
     }
