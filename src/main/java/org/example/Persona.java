@@ -1,15 +1,15 @@
 package org.example;
 
 public class Persona {
-   private Integer dni;
+   private String dni;
     private String apellido;
     private String nombre;
 
-    public Integer getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(Integer dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -34,7 +34,7 @@ public class Persona {
         return "\nDNI: " + dni + "\nApellido: " + apellido + "\nNombre: " + nombre;
     }
 
-    public Persona(Integer dni, String apellido, String nombre) {
+    public Persona(String dni, String apellido, String nombre) {
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;

@@ -1,11 +1,8 @@
 package org.example;
 
 import javax.swing.*;
-import java.util.Scanner;
 
 public class Main {
-
-    static Scanner scanner = new Scanner(System.in);
     static ListaSubes subes = new ListaSubes();
     public static void main(String[] args) {
 
@@ -39,34 +36,40 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Ingrese id de la tarjeta sube que quiere poner a nombre de una Persona: ");
         TarjetaSube tarjetaSube = getTarjetaSube();
 
-        Integer dni = Integer.valueOf(JOptionPane.showInputDialog("Ingrese dni:"));
+        String dni = JOptionPane.showInputDialog("Ingrese dni:");
         String apellido = JOptionPane.showInputDialog("Ingrese apellido:");
         String nombre = JOptionPane.showInputDialog("Ingrese nombre:");
 
         Persona persona = new Persona(dni, apellido, nombre);
 
         tarjetaSube.setPersona(persona);
+        JOptionPane.showMessageDialog(null, tarjetaSube);
     }
 
     private static void consultarSubes(ListaSubes subes) {
         System.out.println(subes);
+
+
+
     }
 
     private static void cargarSaldo() {
         if (verSubesEmpty()) return;
-
-        double carga;
-
-
-        System.out.println("Ingrese id de la tarjeta sube que a la quiere cargar saldo: ");
+        boolean confirm = false;
+        double carga = 0.0;
+        JOptionPane.showMessageDialog(null,"Ingrese id de la tarjeta sube que a la quiere cargar saldo: ");
         TarjetaSube tarjetaSube = getTarjetaSube();
-
-
-        System.out.println("Ingrese la Cantidad a cargar: ");
-        carga = scanner.nextDouble();
+        do {
+            try{
+                String preCarga = JOptionPane.showInputDialog("Ingrese la Cantidad a cargar: ");
+                carga = Double.parseDouble(preCarga);
+                confirm = true;
+            }catch (NumberFormatException e){
+                JOptionPane.showMessageDialog(null, "No es una carga valida", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }while (!confirm);
         tarjetaSube.getSaldo().cargarSaldo(carga);
-        
-        System.out.println("Su Nuevo Saldo es: $" + tarjetaSube.getSaldo());
+        JOptionPane.showMessageDialog(null,"Su Nuevo Saldo es: $" + tarjetaSube.getSaldo());
     }
 
     private static boolean verSubesEmpty() {
@@ -82,8 +85,6 @@ public class Main {
         int id;
         TarjetaSube tarjetaSube = null;
         do {
-
-
             id = confInt();
             for (TarjetaSube tarjeta : subes.getSubes()) {
                 if (id == tarjeta.getId()) {
@@ -98,22 +99,17 @@ public class Main {
 
     private static int confInt() {
         boolean confirmarInt = false;
-        String preId;
+        int Id = 0;
         do {
-            preId = JOptionPane.showInputDialog(null, "Ingrese Id de la Tarjeta Sube");
-            String[] caracteres = preId.split("");
-            for (String caracter : caracteres) {
-                if ((caracter.hashCode() < 48) || (caracter.hashCode() > 57)){
-                    JOptionPane.showMessageDialog(null, "No es un Id correcto");
-                    break;
-                }
-
+            try{
+                String preId = JOptionPane.showInputDialog(null, "Ingrese Id de la Tarjeta Sube");
+                Id = Integer.parseInt(preId);
+                confirmarInt = true;
+            }catch (NumberFormatException e){
+                JOptionPane.showMessageDialog(null, "No es un Id valido", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-
-
         }while (!confirmarInt);
-
-        return Integer.parseInt(preId);
+        return Id;
     }
 
     private static void hacerViaje() {
