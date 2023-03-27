@@ -7,7 +7,7 @@ public enum Colectivo{
     LINEA200("Linea 200"),
     LINEA388("Linea 388");
 
-    private final String linea;
+    private String linea;
 
     @Override
     public String toString() {
