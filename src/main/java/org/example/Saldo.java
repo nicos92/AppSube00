@@ -4,6 +4,8 @@ public class Saldo {
 
     private Double saldo;
 
+
+    // METODO CONSTRUCTOR
     public Saldo (Double saldo){
         this.saldo = saldo;
     }

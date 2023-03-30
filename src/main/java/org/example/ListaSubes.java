@@ -5,9 +5,16 @@ import java.util.ArrayList;
 public class ListaSubes {
     private ArrayList<TarjetaSube> subes;
 
+    // METODO CONSTRUCTOR
+
     public ListaSubes() {
+
         this.subes = new ArrayList<>();
     }
+
+
+
+
 
     public ArrayList<TarjetaSube> getSubes() {
         return subes;
