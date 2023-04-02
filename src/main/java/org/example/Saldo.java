@@ -25,7 +25,7 @@ public class Saldo {
 
     @Override
     public String toString() {
-        return ""+ saldo;
+        return String.valueOf(saldo);
     }
 
 

@@ -16,6 +16,7 @@ public class Main {
                 3) Cargar SAldo
                 4) Consultar Subes
                 5) Poner Sube a Nombre de una Persona
+                6) Dar de baja Tarjeta sube
                 0) Salir del Programa""", "App Sube", JOptionPane.QUESTION_MESSAGE);
 
             switch (opcion){
@@ -24,10 +25,17 @@ public class Main {
                 case "3" -> cargarSaldo();
                 case "4" -> consultarSubes(subes);
                 case "5" -> asignarPersonaASube();
+                case "6" -> darDeBajaTarjetaSube();
                 case "0" -> JOptionPane.showMessageDialog(null, "Adios");
                 default -> JOptionPane.showMessageDialog(null, "No es una opcion");
             }
          }while (!opcion.equals("0"));
+    }
+
+    private static void darDeBajaTarjetaSube() {
+        JOptionPane.showMessageDialog(null, "Ingrese id de la tarjeta sube que quiere dar de baja: ");
+        TarjetaSube tarjetaSube = getTarjetaSube();
+        subes.removeSube(tarjetaSube);
     }
 
     private static void asignarPersonaASube() {

@@ -27,6 +27,6 @@ public class SaldoTest {
 
     @Test
     public void toStringTest(){
-        Assert.assertEquals(""+ saldoTest.getSaldo(), saldoTest.toString());
+        Assert.assertEquals(String.valueOf(saldoTest.getSaldo()), saldoTest.toString());
     }
 }

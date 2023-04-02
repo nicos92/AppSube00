@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class ListaSubes {
@@ -31,5 +32,17 @@ public class ListaSubes {
     @Override
     public String toString() {
         return "Lista de Subes:\n" + subes;
+    }
+
+    public void removeSube(TarjetaSube tarjetaSube){
+
+        for (int i = 0 ; 0 < subes.size() ; i++ ){
+            if (subes.get(i).getId().equals(tarjetaSube.getId())) {
+                subes.remove(i);
+                JOptionPane.showMessageDialog(null, "Sube dada de Baja");
+                break;
+            }
+        }
+
     }
 }
